@@ -25,42 +25,43 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: rgba(255, 255, 255, 0.25); /* すりガラス背景 */
+      background: rgba(68, 68, 68, 0.9); /* ライト時はダークグレー背景 */
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 50%; /* 丸型！ */
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
       transition: all 0.3s ease;
     }
     .time {
       font-family: 'SF Mono', Consolas, Monaco, monospace; /* 等幅フォント */
       font-size: 40px;
       font-weight: 600;
-      color: #333; /* ←文字色 */
+      color: #fff; /* ライト時は白文字 */
       letter-spacing: 2px;
       transition: color 0.3s ease;
     }
     .divider {
       width: 60px;
       height: 1px;
-      background: rgba(0, 0, 0, 0.15);
+      background: rgba(255, 255, 255, 0.3);
       margin: 8px 0;
       transition: background 0.3s ease;
     }
     .date {
       font-size: 13px;
       font-weight: 500;
-      color: #666; /* ←日付の文字色 */
+      color: rgba(255, 255, 255, 0.8); /* ライト時は白文字 */
       letter-spacing: 1px;
       transition: color 0.3s ease;
     }
 
-    /* ダークモードでも白ウィジェット！ */
+    /* ダークモード時は白背景＋ダークグレー文字 */
     @media (prefers-color-scheme: dark) {
       .clock {
-        background: rgba(255, 255, 255, 0.9); /* 白背景 */
+        background: rgba(255, 255, 255, 0.95); /* 白背景 */
         border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       }
       .time { color: #444; } /* ダークグレー */
       .divider { background: rgba(0, 0, 0, 0.15); }
