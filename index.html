@@ -56,15 +56,15 @@
       transition: color 0.3s ease;
     }
 
-    /* ダークモード自動対応！ */
+    /* ダークモードでも白ウィジェット！ */
     @media (prefers-color-scheme: dark) {
       .clock {
-        background: rgba(0, 0, 0, 0.3);
-        border-color: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.9); /* 白背景 */
+        border-color: rgba(255, 255, 255, 0.5);
       }
-      .time { color: #fff; }
-      .divider { background: rgba(255, 255, 255, 0.2); }
-      .date { color: rgba(255, 255, 255, 0.7); }
+      .time { color: #444; } /* ダークグレー */
+      .divider { background: rgba(0, 0, 0, 0.15); }
+      .date { color: #666; } /* ダークグレー */
     }
   </style>
 </head>
