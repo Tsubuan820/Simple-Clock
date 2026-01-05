@@ -1,15 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <title>シンプル時計サンプル作成中</title>
-    
-
-  </head>
-    
-  <body>
-  <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -26,56 +15,76 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: transparent; /* ←背景は透明！Notionに馴染みます */
+      background: transparent;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     .clock {
-      background: #667eea; /* ←ウィジェットの色（ここを変えよう！） */
-      padding: 40px 60px;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-      text-align: center;
+      width: 200px;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.25); /* すりガラス背景 */
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%; /* 丸型！ */
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
     }
     .time {
-      font-size: 72px;
-      font-weight: 300;
-      color: #ffffff; /* ←文字色（ここを変えよう！） */
-      font-variant-numeric: tabular-nums;
+      font-family: 'SF Mono', Consolas, Monaco, monospace; /* 等幅フォント */
+      font-size: 40px;
+      font-weight: 600;
+      color: #333; /* ←文字色 */
       letter-spacing: 2px;
+      transition: color 0.3s ease;
+    }
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: rgba(0, 0, 0, 0.15);
+      margin: 8px 0;
+      transition: background 0.3s ease;
     }
     .date {
-      font-size: 18px;
-      color: rgba(255, 255, 255, 0.8); /* ←日付の文字色 */
-      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #666; /* ←日付の文字色 */
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+
+    /* ダークモード自動対応！ */
+    @media (prefers-color-scheme: dark) {
+      .clock {
+        background: rgba(0, 0, 0, 0.3);
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+      .time { color: #fff; }
+      .divider { background: rgba(255, 255, 255, 0.2); }
+      .date { color: rgba(255, 255, 255, 0.7); }
     }
   </style>
 </head>
 <body>
   <div class="clock">
-    <div class="time" id="time">00:00:00</div>
+    <div class="time" id="time">00:00</div>
+    <div class="divider"></div>
     <div class="date" id="date"></div>
   </div>
   <script>
     function updateClock() {
       const now = new Date();
-      
-      // 時刻
       const hours = String(now.getHours()).padStart(2, '0');
       const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
-      document.getElementById('time').textContent = `${hours}:${minutes}:${seconds}`;
-      
-      // 日付
-      const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
-      document.getElementById('date').textContent = now.toLocaleDateString('ja-JP', options);
+      document.getElementById('time').textContent = `${hours}:${minutes}`;
+      const options = { weekday: 'short', month: 'short', day: 'numeric' };
+      document.getElementById('date').textContent = now.toLocaleDateString('en-US', options);
     }
-    
     updateClock();
     setInterval(updateClock, 1000);
   </script>
 </body>
-</html>
-    
-  </body>
-  
 </html>
